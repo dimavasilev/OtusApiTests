@@ -8,7 +8,7 @@ import io.restassured.specification.RequestSpecification;
 import static io.restassured.RestAssured.given;
 
 public class PetStoreApiService {
-  private RequestSpecification requestSpecification;
+  private final RequestSpecification requestSpecification;
 
   public PetStoreApiService() {
     requestSpecification = given()

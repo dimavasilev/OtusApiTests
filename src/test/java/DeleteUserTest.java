@@ -1,4 +1,3 @@
-import io.restassured.response.Response;
 import org.apache.http.*;
 import org.junit.jupiter.api.*;
 import service.PetStoreApiService;
