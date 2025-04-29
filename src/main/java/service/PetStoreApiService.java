@@ -10,18 +10,38 @@ import static io.restassured.RestAssured.given;
 public class PetStoreApiService {
   private RequestSpecification requestSpecification;
 
-  PetStoreApiService() {
+  public PetStoreApiService() {
     requestSpecification = given()
-        .baseUri("http://localhost:8080/api")
-        .basePath("/user")
+        .baseUri(System.getProperty("base.url"))
         .contentType(ContentType.JSON)
         .log().all();
   }
 
   public ValidatableResponse createUser(UserDTO userDTO) {
     return given(requestSpecification)
+        .body(userDTO)
+        .basePath("/user")
         .when()
         .post()
+        .then()
+        .log().all();
+  }
+
+  public ValidatableResponse deleteUser(String user) {
+    return given(requestSpecification)
+        .basePath("/user")
+        .pathParam("username", user)
+        .when()
+        .delete("/{username}")
+        .then()
+        .log().all();
+  }
+
+
+  public ValidatableResponse updateUser(UserDTO userDTO){
+    return given(requestSpecification)
+        .when()
+        .put("/{username}", userDTO.getUsername())
         .then()
         .log().all();
   }

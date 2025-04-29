@@ -12,14 +12,14 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <wiremock.version>3.12.1</wiremock.version>
         <junit5.version>5.11.3</junit5.version>
         <assertj.version>4.0.0-M1</assertj.version>
         <compiler.plugin.version>3.13.0</compiler.plugin.version>
         <surefire.plugin.version>3.5.2</surefire.plugin.version>
         <rest-assured.version>5.5.1</rest-assured.version>
         <json.version>20250107</json.version>
-        <saaj.version>3.0.4</saaj.version>
+        <jackson.version>2.19.0</jackson.version>
+        <json.schema.validator.version>5.4.0</json.schema.validator.version>
     </properties>
 
     <dependencies>
@@ -39,10 +39,20 @@
             <version>${rest-assured.version}</version>
         </dependency>
         <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>${json.schema.validator.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>RELEASE</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
 
@@ -63,9 +73,7 @@
                 <version>${surefire.plugin.version}</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <base.url>http://127.0.0.1:8080</base.url>
-                        <base.url.soap>http://127.0.0.1</base.url.soap>
-                        <base.port.soap>8080</base.port.soap>
+                        <base.url>https://petstore.swagger.io/v2/</base.url>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
