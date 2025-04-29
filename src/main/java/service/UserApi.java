@@ -12,7 +12,7 @@ public class UserApi {
 
   private static final String USER = "/user";
 
-  public UserApi(){
+  public UserApi() {
     specification = given()
         .baseUri(BASE_URL)
         .contentType(ContentType.JSON);
